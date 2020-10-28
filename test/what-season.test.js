@@ -19,11 +19,11 @@ describe('What season', () => {
     //Specific requirements
 
     describe('base requirements', () => {
-        it.optional('returns proper value', () => {   
-            const [ 
-                winter, 
-                spring, 
-                summer, 
+        it.optional('returns proper value', () => {
+            const [
+                winter,
+                spring,
+                summer,
                 autumn,
             ] = [
                 new Date(2019, 11, 22, 23, 45, 11, 500),
@@ -38,10 +38,10 @@ describe('What season', () => {
         });
 
         it.optional('returns proper value if date is before 1970', () => {
-            const [ 
-                winter, 
-                spring, 
-                summer, 
+            const [
+                winter,
+                spring,
+                summer,
                 autumn,
             ] = [
                 new Date(1900, 0, 22, 23, 45, 11, 500),
@@ -56,10 +56,10 @@ describe('What season', () => {
         });
 
         it.optional('returns proper value (month index)', () => {
-            const [ 
-                winter, 
-                spring, 
-                summer, 
+            const [
+                winter,
+                spring,
+                summer,
                 autumn,
             ] = [
                 new Date(2025, 1, 22, 23, 45, 11, 500),
@@ -77,12 +77,12 @@ describe('What season', () => {
             let res = null;
             try {
                 getSeason();
-            } catch(err) {
-              if (err._validationProp === 'NA') {
-                this.skip();
-              } else {
-                res = 'FAIL';
-              }
+            } catch (err) {
+                if (err._validationProp === 'NA') {
+                    this.skip();
+                } else {
+                    res = 'FAIL';
+                }
             }
             assert.equal(res, null);
             assert.equal(getSeason(), 'Unable to determine the time of year!');
@@ -191,7 +191,7 @@ describe('What season', () => {
         });
     });
 
-    describe('extended requirements ', () => {   
+    describe('extended requirements ', () => {
         it.optional('throws an error on invalid argument', function() {
             let res = null;
             try {
@@ -200,14 +200,14 @@ describe('What season', () => {
                 getSeason(20192701);
                 getSeason([2019, '27', 0 + '1']);
                 getSeason(() => new Date());
-            } catch(err) {
+            } catch (err) {
                 if (err._validationProp === 'NA') {
-                  this.skip();
+                    this.skip();
                 } else {
-                  res = 'THROWN';
+                    res = 'THROWN';
                 }
-              }
-              assert.equal(res, 'THROWN');
+            }
+            assert.equal(res, 'THROWN');
         });
 
         it.optional('throws an error on tricky moment', function() {
@@ -221,12 +221,12 @@ describe('What season', () => {
             Object.setPrototypeOf(fakeDate, Object.getPrototypeOf(new Date()));
             try {
                 getSeason(fakeDate)
-            } catch(err) {
+            } catch (err) {
                 if (err._validationProp === 'NA') {
                     this.skip();
-                  } else {
+                } else {
                     res = 'THROWN';
-                  }
+                }
             }
             assert.equal(res, 'THROWN');
         });
@@ -268,12 +268,12 @@ describe('What season', () => {
 
             try {
                 getSeason(deeperFakeDate)
-            } catch(err) {
+            } catch (err) {
                 if (err._validationProp === 'NA') {
                     this.skip();
-                  } else {
+                } else {
                     res = 'THROWN';
-                  }
+                }
             }
             assert.equal(res, 'THROWN');
         });

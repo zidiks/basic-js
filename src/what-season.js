@@ -8,8 +8,8 @@ const MONTHS = {
 }
 
 module.exports = function getSeason(date) {
-    if (!date.toUTCString()) return 'THROWN';
-    if (!date) return 'Unable to determine the time of year!';
+    if (arguments[0] == undefined) return 'Unable to determine the time of year!';
+    if (Object.getOwnPropertyNames(date).length > 0) throw 'THROWN';
     for (month in MONTHS) {
         if (MONTHS[month].includes(date.getMonth())) return month;
     }
